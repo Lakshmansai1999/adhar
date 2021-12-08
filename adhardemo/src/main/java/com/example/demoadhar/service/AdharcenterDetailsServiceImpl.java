@@ -26,6 +26,7 @@ import com.example.demoadhar.service.EmailService;
 @Service
 
 public class AdharcenterDetailsServiceImpl implements AdharcenterService {
+	
 	@Autowired
 	private AdharcenterRepository adharcenterRepository;
 	
@@ -89,7 +90,7 @@ public Adharcenter createAdharcenter(AdharcenterDto userDto)throws Exception{
 			    user2= userRepository.save(user);
 			     }
 			        Mail mail = new Mail();
-					 mail.setSubject("Welcome to Cricket-IPL Project");
+					 mail.setSubject("Welcome to Adhar Project");
 			       mail.setToEmail(user.getEmail());
 			       mail.setContent("You were " +"Username :"+user.getUsername() +"\n"+ "password :"+pass);
 			       emailService.sendEmail(mail);
@@ -136,8 +137,7 @@ public Adharcenter createAdharcenter(AdharcenterDto userDto)throws Exception{
 		if(adharcenter.isPresent()) {
 			Adharcenter adharcenterUpdate=adharcenter.get();
 			adharcenterUpdate.setCode(adharcenterDto.getCode());
-			
-			//adharcenterUpdate.setCity(adharcenterDto.getCity());
+		adharcenterUpdate.setCity(adharcenterDto.getCity());
 			
 	
 				User userUpdate=new User();
