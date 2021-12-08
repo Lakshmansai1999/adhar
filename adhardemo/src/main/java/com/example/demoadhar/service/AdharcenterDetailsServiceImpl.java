@@ -137,6 +137,7 @@ public Adharcenter createAdharcenter(AdharcenterDto userDto)throws Exception{
 		if(adharcenter.isPresent()) {
 			Adharcenter adharcenterUpdate=adharcenter.get();
 			adharcenterUpdate.setCode(adharcenterDto.getCode());
+			adharcenterUpdate.setEmail(adharcenterDto.getEmail());
 		adharcenterUpdate.setCity(adharcenterDto.getCity());
 			
 	
