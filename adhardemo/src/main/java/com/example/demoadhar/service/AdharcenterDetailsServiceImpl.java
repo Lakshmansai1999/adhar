@@ -53,8 +53,10 @@ public class AdharcenterDetailsServiceImpl implements AdharcenterService {
 public Adharcenter createAdharcenter(AdharcenterDto userDto)throws Exception{
 		
 		Adharcenter adharcenterDto = new Adharcenter();
-				adharcenterDto.setCity(userDto.getCity());
 		adharcenterDto.setCode(userDto.getCode());
+		adharcenterDto.setCity(userDto.getCity());
+		adharcenterDto.setEmail(userDto.getEmail());
+		
 		
 		UserDto dto = userDto.getUserDto();
 		User user=new User();

@@ -26,7 +26,7 @@ public class AdharcenterDto {
 	}
 	@Override
 	public String toString() {
-		return "StadiumDto [id=" + id + ", code=" + code + ", city=" + city + ", userDto=" + userDto
+		return "AdharcenterDto [center_id=" + id + ", code=" + code + ", city=" + city + ", userDto=" + userDto
 				+ "]";
 	
 	}
