@@ -17,7 +17,7 @@ public class AdharcenterDto {
 	private Integer id;
 	private Integer code;
 	private String city;
-	private String email;
+	
 	private UserDto userDto;
 	
 	private AdharcenterDto (){

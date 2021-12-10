@@ -38,17 +38,13 @@ public class Adharcenter {
 	@Column(name = "center_id")
 	private Integer id;
 	
-	@Column(name="center_name")
+	@Column(name="center_code")
 	private Integer code;
 	
 	
 	@Column(name="city")
 	private String city;
 	
-	@Pattern(regexp ="^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$",message="mail id is not valid")
-	@NotEmpty
-	@Column(name="email",unique = true)
-	private String email;
 	
 	@OneToOne(cascade = CascadeType.ALL, optional = false)
 	@JoinColumn

@@ -55,7 +55,7 @@ public Adharcenter createAdharcenter(AdharcenterDto userDto)throws Exception{
 		Adharcenter adharcenterDto = new Adharcenter();
 		adharcenterDto.setCode(userDto.getCode());
 		adharcenterDto.setCity(userDto.getCity());
-		adharcenterDto.setEmail(userDto.getEmail());
+		
 		
 		
 		UserDto dto = userDto.getUserDto();
@@ -110,7 +110,7 @@ public Adharcenter createAdharcenter(AdharcenterDto userDto)throws Exception{
 		}
 		
 		else {
-			throw  new RuntimeException("Record not found with id  :" +id);
+			throw  new RuntimeException("Record not found with center id  :" +id);
 		}
 	}
 	@Override
@@ -123,7 +123,7 @@ public Adharcenter createAdharcenter(AdharcenterDto userDto)throws Exception{
         	this.adharcenterRepository.deleteById(id);
 		}
 		else {
-			throw new RuntimeException("Record not found with id  :" +id);
+			throw new RuntimeException("Record not found with entre id  :" +id);
 		}
 		
 	}
@@ -138,8 +138,7 @@ public Adharcenter createAdharcenter(AdharcenterDto userDto)throws Exception{
 		
 		if(adharcenter.isPresent()) {
 			Adharcenter adharcenterUpdate=adharcenter.get();
-			adharcenterUpdate.setCode(adharcenterDto.getCode());
-			adharcenterUpdate.setEmail(adharcenterDto.getEmail());
+			adharcenterUpdate.setCode(adharcenterDto.getCode());		
 		adharcenterUpdate.setCity(adharcenterDto.getCity());
 			
 	

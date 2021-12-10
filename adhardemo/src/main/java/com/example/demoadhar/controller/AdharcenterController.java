@@ -49,9 +49,9 @@ public class AdharcenterController {
 	        
 	    }
 	@PutMapping(value="/{id}")
-	public ResponseEntity<Adharcenter> update(@RequestBody AdharcenterDto stadium,@PathVariable int id) {
-	stadium.setId(id);
-		return ResponseEntity.ok().body(adharcenterService.update(stadium));
+	public ResponseEntity<Adharcenter> update(@RequestBody AdharcenterDto adharcenter,@PathVariable int id) {
+	adharcenter.setId(id);
+		return ResponseEntity.ok().body(adharcenterService.update(adharcenter));
 		
 		}
 
