@@ -17,8 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demoadhar.dto.AdharcenterDto;
 import com.example.demoadhar.entity.Adharcenter;
+import com.example.demoadhar.entity.AdharUsers;
 import com.example.demoadhar.service.AdharcenterService;
-
+import com.example.demoadhar.service.AdharUsersService;
 @RestController
 @RequestMapping("/Adharcenter")
 public class AdharcenterController {

@@ -16,9 +16,9 @@ public interface AdharUsersService {
 
 public AdharUsers createAdharUsers(AdharUsersDto userDto)throws Exception;
 
-public AdharUsers findById(int id);
+public AdharUsers findByAuid(int auid);
 
-public void deleteById(int id);
+public void deleteByAuid(int auid);
 
 public AdharUsers update(AdharUsersDto AdharUsersDto);
 

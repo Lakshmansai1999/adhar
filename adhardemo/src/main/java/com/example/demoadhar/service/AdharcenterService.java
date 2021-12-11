@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.example.demoadhar.dto.AdharcenterDto;
+import com.example.demoadhar.entity.AdharUsers;
 import com.example.demoadhar.entity.Adharcenter;
 import com.example.demoadhar.dto.UserDto;
 import com.example.demoadhar.entity.User;
@@ -22,5 +23,7 @@ public List<Adharcenter> getAllAdharcenters();
 	public void deleteById(int id);
 	
 	public Adharcenter update(AdharcenterDto AdharcenterDto);
+
+	List<AdharUsers> getAllAdharUsers();
 
 }

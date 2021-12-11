@@ -53,12 +53,7 @@ public class AdharUsers {
 	
 	@OneToOne(cascade = CascadeType.ALL, optional = false)
 	@JoinColumn
-	private User user;
+	private User userId;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinTable(name = "Adharcenter", 
-	joinColumns = @JoinColumn(name = "center_id", referencedColumnName = "auid"))
-	@OrderBy
-    @JsonIgnore
-	private List<Adharcenter> adharcenters;
+	
 }

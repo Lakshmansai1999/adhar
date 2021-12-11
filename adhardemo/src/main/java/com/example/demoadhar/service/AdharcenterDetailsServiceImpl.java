@@ -13,12 +13,14 @@ import org.springframework.transaction.annotation.Transactional;
 import com.example.demoadhar.dto.AdharcenterDto;
 import com.example.demoadhar.dto.UserDto;
 import com.example.demoadhar.entity.Authority;
+import com.example.demoadhar.entity.AdharUsers;
 import com.example.demoadhar.entity.Mail;
 import com.example.demoadhar.entity.PasswordGenerator;
 import com.example.demoadhar.entity.Adharcenter;
 import com.example.demoadhar.entity.User;
 import com.example.demoadhar.repository.AuthorityRepository;
 import com.example.demoadhar.repository.AdharcenterRepository;
+import com.example.demoadhar.repository.AdharUsersRepository;
 import com.example.demoadhar.repository.UserRepository;
 import com.example.demoadhar.service.EmailService;
 
@@ -29,6 +31,9 @@ public class AdharcenterDetailsServiceImpl implements AdharcenterService {
 	
 	@Autowired
 	private AdharcenterRepository adharcenterRepository;
+	
+	@Autowired
+	private AdharUsersRepository adharusersRepository;
 	
 	@Autowired
 	private UserRepository userRepository;
@@ -47,6 +52,15 @@ public class AdharcenterDetailsServiceImpl implements AdharcenterService {
 	 public List<Adharcenter> getAllAdharcenters() {
 		 return this.adharcenterRepository.findAll();
 	 } 
+	
+
+	@Override
+	
+	@Transactional
+	public List<AdharUsers> getAllAdharUsers() {
+		
+		return this.adharusersRepository.findAll();
+	}
 	
 	@Override
 	@Transactional
@@ -117,8 +131,8 @@ public Adharcenter createAdharcenter(AdharcenterDto userDto)throws Exception{
 	@Transactional
 	public void deleteById(int id) {
 		
-		Optional<Adharcenter> stadium= this.adharcenterRepository.findById(id);
-        if(stadium.isPresent()) {
+		Optional<Adharcenter> adharcenter= this.adharcenterRepository.findById(id);
+        if(adharcenter.isPresent()) {
 			
         	this.adharcenterRepository.deleteById(id);
 		}

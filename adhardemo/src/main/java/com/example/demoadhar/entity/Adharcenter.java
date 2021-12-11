@@ -1,4 +1,5 @@
 package com.example.demoadhar.entity;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -49,5 +50,11 @@ public class Adharcenter {
 	@OneToOne(cascade = CascadeType.ALL, optional = false)
 	@JoinColumn
 	private User userId; 
-
+	
+	
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name="auid",referencedColumnName="center_id")
+	List<AdharUsers> adharusers = new ArrayList<>();
+ 
 }

@@ -100,28 +100,28 @@ public AdharUsers createAdharUsers(AdharUsersDto userDto)throws Exception{
 	}
 	@Override
 	@Transactional(readOnly = true)
-	public AdharUsers findById(int id) {
+	public AdharUsers findByAuid(int auid) {
 		
-		Optional<AdharUsers> stad=this.adharusersRepository.findById(id);
+		Optional<AdharUsers> stad=this.adharusersRepository.findByAuid(auid);
 		if(stad.isPresent()) {
 			return stad.get();
 		}
 		
 		else {
-			throw  new RuntimeException("Record not found with center id  :" +id);
+			throw  new RuntimeException("Record not found with center id  :" +auid);
 		}
 	}
 	@Override
 	@Transactional
-	public void deleteById(int id) {
+	public void deleteByAuid(int auid) {
 		
-		Optional<AdharUsers> stadium= this.adharusersRepository.findById(id);
-        if(stadium.isPresent()) {
+		Optional<AdharUsers> adharusers= this.adharusersRepository.findByAuid(auid);
+        if(adharusers.isPresent()) {
 			
-        	this.adharusersRepository.deleteById(id);
+        	this.adharusersRepository.deleteByAuid(auid);
 		}
 		else {
-			throw new RuntimeException("Record not found with entre id  :" +id);
+			throw new RuntimeException("Record not found with entre id  :" +auid);
 		}
 		
 	}
@@ -130,7 +130,7 @@ public AdharUsers createAdharUsers(AdharUsersDto userDto)throws Exception{
 	public AdharUsers update(AdharUsersDto adharusersDto) 
 	{
 	
-        Optional<AdharUsers> adharusers=this.adharusersRepository.findById(adharusersDto.getAuid());
+        Optional<AdharUsers> adharusers=this.adharusersRepository.findByAuid(adharusersDto.getAuid());
 	
 
 		
