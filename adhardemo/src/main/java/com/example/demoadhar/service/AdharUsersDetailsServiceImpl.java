@@ -20,7 +20,7 @@ import com.example.demoadhar.entity.User;
 import com.example.demoadhar.repository.AdharUsersRepository;
 import com.example.demoadhar.repository.AuthorityRepository;
 import com.example.demoadhar.repository.UserRepository;
-
+@Service
 public class AdharUsersDetailsServiceImpl implements AdharUsersService{
 	
 
@@ -102,7 +102,7 @@ public AdharUsers createAdharUsers(AdharUsersDto userDto)throws Exception{
 	@Transactional(readOnly = true)
 	public AdharUsers findByAuid(int auid) {
 		
-		Optional<AdharUsers> stad=this.adharusersRepository.findByAuid(auid);
+		Optional<AdharUsers> stad=this.adharusersRepository.findById(auid);
 		if(stad.isPresent()) {
 			return stad.get();
 		}
@@ -115,10 +115,10 @@ public AdharUsers createAdharUsers(AdharUsersDto userDto)throws Exception{
 	@Transactional
 	public void deleteByAuid(int auid) {
 		
-		Optional<AdharUsers> adharusers= this.adharusersRepository.findByAuid(auid);
+		Optional<AdharUsers> adharusers= this.adharusersRepository.findById(auid);
         if(adharusers.isPresent()) {
 			
-        	this.adharusersRepository.deleteByAuid(auid);
+        	this.adharusersRepository.deleteById(auid);
 		}
 		else {
 			throw new RuntimeException("Record not found with entre id  :" +auid);
@@ -130,7 +130,7 @@ public AdharUsers createAdharUsers(AdharUsersDto userDto)throws Exception{
 	public AdharUsers update(AdharUsersDto adharusersDto) 
 	{
 	
-        Optional<AdharUsers> adharusers=this.adharusersRepository.findByAuid(adharusersDto.getAuid());
+        Optional<AdharUsers> adharusers=this.adharusersRepository.findById(adharusersDto.getAuid());
 	
 
 		

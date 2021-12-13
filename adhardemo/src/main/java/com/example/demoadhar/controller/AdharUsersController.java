@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demoadhar.dto.AdharUsersDto;
 import com.example.demoadhar.entity.AdharUsers;
 import com.example.demoadhar.service.AdharUsersService;
+
 @RestController
 @RequestMapping("/AdharUsers")
 public class AdharUsersController {
@@ -35,11 +36,11 @@ public class AdharUsersController {
 		AdharUsers adharusers = this.adharusersService.createAdharUsers(adharusersDto);
 		return new ResponseEntity<>(adharusers,HttpStatus.CREATED);
 	}
-	@GetMapping(value="/{id}")
+	@GetMapping(value="/{auid}")
 	public ResponseEntity<AdharUsers> getUserByAuid(@PathVariable int auid) {
 		return ResponseEntity.ok().body(this.adharusersService.findByAuid(auid));
 	} 
-	@DeleteMapping(value="/{id}")
+	@DeleteMapping(value="/{auid}")
 	 @ResponseStatus(value = HttpStatus.OK)
 	 public HttpStatus delete(@PathVariable int auid) {
 			System.out.println("delete");
@@ -47,7 +48,7 @@ public class AdharUsersController {
 			return HttpStatus.OK;
 	        
 	    }
-	@PutMapping(value="/{id}")
+	@PutMapping(value="/{auid}")
 	public ResponseEntity<AdharUsers> update(@RequestBody AdharUsersDto adharusers,@PathVariable int auid) {
 	adharusers.setAuid(auid);
 		return ResponseEntity.ok().body(adharusersService.update(adharusers));

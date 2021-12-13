@@ -10,7 +10,7 @@ import com.example.demoadhar.entity.AdharUsers;
 import com.example.demoadhar.dto.UserDto;
 import com.example.demoadhar.entity.User;
 
-@Service
+
 public interface AdharUsersService {
 	public List<AdharUsers> getAllAdharUsers();
 
@@ -22,4 +22,6 @@ public void deleteByAuid(int auid);
 
 public AdharUsers update(AdharUsersDto AdharUsersDto);
 
+//public List<AdharUsers> getAllAdharUsers();
 }
+

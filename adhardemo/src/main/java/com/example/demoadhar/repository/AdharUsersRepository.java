@@ -9,6 +9,6 @@ import com.example.demoadhar.entity.AdharUsers;
 	@Repository
 	public interface AdharUsersRepository extends JpaRepository<AdharUsers, Integer>{
 		
-		AdharUsers findByAuid(int auid);
+		AdharUsers findByAge(int age);
 
 }
