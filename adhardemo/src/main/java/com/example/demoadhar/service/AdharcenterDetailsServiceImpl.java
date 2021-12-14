@@ -71,7 +71,6 @@ public Adharcenter createAdharcenter(AdharcenterDto userDto)throws Exception{
 		adharcenterDto.setCity(userDto.getCity());
 		
 		
-		
 		UserDto dto = userDto.getUserDto();
 		User user=new User();
 	      user.setFirstName(dto.getFirstName());

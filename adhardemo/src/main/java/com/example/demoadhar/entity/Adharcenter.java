@@ -55,8 +55,10 @@ public class Adharcenter {
 	
 	
 	
-	@ManyToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name="auid",referencedColumnName="center_id")
+	
 	List<AdharUsers> adharusers = new ArrayList<>();
  
 }
+
