@@ -13,16 +13,19 @@ import org.springframework.transaction.annotation.Transactional;
 import com.example.demoadhar.dto.AdharUsersDto;
 import com.example.demoadhar.dto.UserDto;
 import com.example.demoadhar.entity.AdharUsers;
+import com.example.demoadhar.entity.Adharcenter;
 import com.example.demoadhar.entity.Authority;
 import com.example.demoadhar.entity.Mail;
 import com.example.demoadhar.entity.PasswordGenerator;
 import com.example.demoadhar.entity.User;
 import com.example.demoadhar.repository.AdharUsersRepository;
+import com.example.demoadhar.repository.AdharcenterRepository;
 import com.example.demoadhar.repository.AuthorityRepository;
 import com.example.demoadhar.repository.UserRepository;
 @Service
 public class AdharUsersDetailsServiceImpl implements AdharUsersService{
-	
+	@Autowired
+	private AdharcenterRepository adharcenterRepository;
 
 	@Autowired
 	private AdharUsersRepository adharusersRepository;
@@ -54,6 +57,10 @@ public AdharUsers createAdharUsers(AdharUsersDto userDto)throws Exception{
 		adharusersDto.setAge(userDto.getAge());
 		adharusersDto.setMno(userDto.getMno());
 		adharusersDto.setAddress(userDto.getAddress());
+	   
+		Adharcenter adharcenter=adharcenterRepository.findByCode(userDto.getCode());
+		adharusersDto.setAdharcenter(adharcenter);
+		
 		
 		
 		UserDto dto = userDto.getUserDto();

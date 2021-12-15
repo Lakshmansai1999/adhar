@@ -53,9 +53,9 @@ public class Adharcenter {
 	@JoinColumn
 	private User userId; 
 	
-	@OneToMany(targetEntity=AdharUsers.class,fetch = FetchType.LAZY,cascade = CascadeType.MERGE)
+/*	@OneToMany(targetEntity=AdharUsers.class,fetch = FetchType.LAZY,cascade = CascadeType.MERGE)
 	@JoinColumn(name="center_id",referencedColumnName = "center_id")
-	private List<AdharUsers>adharusers=new ArrayList<AdharUsers>();
+	private List<AdharUsers>adharusers=new ArrayList<AdharUsers>();*/
 	
 	
 	

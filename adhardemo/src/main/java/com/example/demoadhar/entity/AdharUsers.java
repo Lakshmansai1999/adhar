@@ -1,4 +1,5 @@
 package com.example.demoadhar.entity;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.FetchType;
@@ -52,9 +53,16 @@ public class AdharUsers {
 	@Column(name="Address")
 	private String address;
 	
+	
 	@OneToOne(cascade = CascadeType.ALL, optional = false)
 	@JoinColumn
+	@JsonIgnore
 	private User userId;
-
+	
+	@ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.MERGE)
+	@JoinColumn
+	@JsonIgnore
+	private Adharcenter adharcenter;
+	
 	
 }
