@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -33,7 +34,6 @@ import lombok.Setter;
 @Data
 @Table(name="adharcenter")
 public class Adharcenter {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "adharcenter_sequence")
 	@SequenceGenerator(name = "adharcenter_sequence", sequenceName = "adharcenter_sequence", allocationSize = 1)
@@ -53,12 +53,14 @@ public class Adharcenter {
 	@JoinColumn
 	private User userId; 
 	
+	@OneToMany(targetEntity=AdharUsers.class,fetch = FetchType.LAZY,cascade = CascadeType.MERGE)
+	@JoinColumn(name="center_id",referencedColumnName = "center_id")
+	private List<AdharUsers>adharusers=new ArrayList<AdharUsers>();
 	
 	
-	@OneToMany(cascade = CascadeType.ALL)
+	
+	/*@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name="auid",referencedColumnName="center_id")
+	List<AdharUsers> adharusers = new ArrayList<>();*/
 	
-	List<AdharUsers> adharusers = new ArrayList<>();
- 
 }
-

@@ -11,5 +11,4 @@ import com.example.demoadhar.entity.Adharcenter;
 public interface AdharcenterRepository extends JpaRepository<Adharcenter, Integer>{
 	
 	Adharcenter findByCode(int code);
-	
 }
