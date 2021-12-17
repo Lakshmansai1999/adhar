@@ -115,7 +115,7 @@ public Adharcenter createAdharcenter(AdharcenterDto userDto)throws Exception{
 	}
 	@Override
 	@Transactional(readOnly = true)
-	public Adharcenter findById(int id) {
+	public Adharcenter findById(int i) {
 		
 		Optional<Adharcenter> stad=this.adharcenterRepository.findById(id);
 		if(stad.isPresent()) {
