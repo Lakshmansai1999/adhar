@@ -82,7 +82,7 @@ public AdharUsers createAdharUsers(AdharUsersDto userDto)throws Exception{
 		      List<Authority> listAll=authorityRepository.findAll();
 			     String superAdmin=listAll.get(0).getName();
 			     List<String> superList=new ArrayList<>();
-			     superList.add(uperAdmin);
+			     superList.add(superAdmin);
 			     
 			     List<Authority> addAuthorities=authorityRepository.find(dto.getRole());
 			    

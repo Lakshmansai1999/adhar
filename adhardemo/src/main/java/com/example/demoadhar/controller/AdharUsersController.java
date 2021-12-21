@@ -36,7 +36,7 @@ public class AdharUsersController {
 		AdharUsers adharusers = this.adharusersService.createAdharUsers(adharusersDto);
 		return new ResponseEntity<>(adharusers,HttpStatus.CREATED);
 	}
-	@GetMapping(value="/{auid}")
+	@GetMapping(value="/{code}")
 	public ResponseEntity<AdharUsers> getUserByAuid(@PathVariable int auid) {
 		return ResponseEntity.ok().body(this.adharusersService.findByAuid(auid));
 	} 
