@@ -25,10 +25,26 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
   
     @Override
     public void configure(HttpSecurity http) throws Exception {
+    	http.csrf().disable().authorizeRequests().antMatchers("/oauth/token").permitAll()
+    	.antMatchers("/api").hasAnyAuthority("ROLE_SUPER_ADMIN")
+    	.antMatchers("/adharusers/**").hasAuthority("ROLE_ADMIN").anyRequest()
+    	.authenticated().and().formLogin().disable();
+        
+    	
+    	/*
+    	 http.csrf().disable().authorizeRequests().antMatchers("/oauth/token").permitAll()
+    	.antMatchers("/api").hasAnyAuthority("ROLE_MOBILE_SUPER_ADMIN")
+    	.antMatchers("/moc/**","/moi/**","/disc/**").hasAuthority("ROLE_MOBILECOMPANY").anyRequest()
+    	.authenticated().and().formLogin().disable();  
+    	
+    	 */
+    	
+    	/*
+    	 *  public void configure(HttpSecurity http) throws Exception {
     	http.csrf().disable().authorizeRequests().antMatchers("/api/get").permitAll()
     	.antMatchers("/user").hasAnyAuthority("SUPER_ADMIN").anyRequest()
     	.authenticated().and().formLogin().disable();
-               
+    	 */
     }
 
 

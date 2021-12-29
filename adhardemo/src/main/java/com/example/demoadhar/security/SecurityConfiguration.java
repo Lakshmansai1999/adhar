@@ -48,8 +48,26 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
      
+    	http.csrf().disable().authorizeRequests().antMatchers("/oauth/token").permitAll()
+    	.antMatchers("/api").hasAnyAuthority("ROLE_SUPER_ADMIN")
+    	.antMatchers("/adharusers/**").hasAuthority("ROLE_ADMIN").anyRequest()
+    	.authenticated().and().formLogin().disable();
+    	
+    	/*
+    	 * http.csrf().disable().authorizeRequests().antMatchers("/oauth/token").permitAll()
+  	.antMatchers("/api").hasAnyAuthority("ROLE_MOBILE_SUPER_ADMIN")
+    	.antMatchers("/mobilecompany/**","/mobilemodel/**","/Distributiondetails/**").hasAuthority("ROLE_MOBILECOMPANY").anyRequest()
+    	//.antMatchers("/Distributiondetails/**").hasAuthority("ROLE_MOBILECOMPANY")
+    	
+    	.authenticated().and().formLogin().disable();
+    	 */
+    	
+    	/*
+    	 *  protected void configure(HttpSecurity http) throws Exception {
+     
     	http.csrf().disable().authorizeRequests().antMatchers("/api/get").permitAll()
     	.antMatchers("/user").hasAnyAuthority("SUPER_ADMIN").anyRequest()
     	.authenticated().and().formLogin().disable();
+    	 */
 }
 }

@@ -1,5 +1,6 @@
 package com.example.demoadhar.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 
+import com.example.demoadhar.Exception.CustomException;
 import com.example.demoadhar.dto.UserDto;
 import com.example.demoadhar.entity.Authority;
 import com.example.demoadhar.entity.Mail;
@@ -34,7 +36,7 @@ public class UserDetailsServiceImpl implements UserDetailsService,UserService {
 	
 	@Autowired
 	private EmailService  emailservice;
-	
+
 	@Autowired
 	private AuthorityRepository authorityRepository;
 	
@@ -56,37 +58,73 @@ public class UserDetailsServiceImpl implements UserDetailsService,UserService {
 	 }
 	@Override
 	@Transactional
-	public User saveUser(UserDto userdto) throws Exception {
+	public User create(UserDto userdto) throws Exception {
 		
 		User user=new User();
 		user.setFirstName(userdto.getFirstName());
 	      user.setLastName(userdto.getLastName());
 	      user.setEmail(userdto.getEmail());
-	      user.setUsername(userdto.getUsername());
+	     // user.setUsername(userdto.getUsername());
+	      user.setUsername(userdto.getEmail());
+	      
+	      
 	      PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(); 
 	      String pass= passwordGenerator.generateRandomPassword(8);
 	      String encodedPassword = passwordEncoder.encode(pass);
 	      System.out.println(pass);
-	      
 	      user.setPassword(encodedPassword);
 	     
-	      List<Authority> addAuthorities=authorityRepository.find(userdto.getRole());
-          user.setAuthorities(addAuthorities); 
-         
+	      User u2=null;
+	      List<Authority> addAuthorities=authorityRepository.findAll();
+        
           
-	Mail mail = new Mail();
-	 mail.setSubject("Welcome to adhardemo Project");
-  mail.setToEmail(user.getEmail());
-  mail.setContent(" User name:"+user.getUsername() +"\n"+ "password :"+pass);
-  emailservice.sendEmail(mail);
- return 	userRepository.save(user);
+	        String getName=addAuthorities.get(0).getName();
+	        List<String> s4=new ArrayList<String>();
+	        s4.add(getName);
+	        
+	        List<Authority> addAuthoritiess=authorityRepository.find(userdto.getRole());
+	       
+	        if(s4.equals(userdto.getRole()))
+	        {
+	        	throw new CustomException("this role was not added ");
+	        }
+	        else
+	        {
+          user.setAuthorities(addAuthoritiess);
+         u2= userRepository.save(user);
+	        }
+	          
+          
+	Mail email = new Mail();
+	 email.setSubject("Welcome to mobile Project");
+  email.setToEmail(user.getEmail());
+  email.setContent("user name:"+user.getUsername() +"\n"+ "password :"+pass);
+  emailservice.sendEmail(email);
+  return u2;
  
 	}
 	
 	@Transactional
-	public User update(User userdto) {
-		return userRepository.save(userdto);
+	public User update(UserDto userdto) {
+Optional<User> userdb=this.userRepository.findById((int) userdto.getId());
+		
+		if(userdb.isPresent()) {
+			User userUpdate=userdb.get();
+			userUpdate.setId(userdto.getId());
+		//	userUpdate.setUsername(userdto.getUsername());
+			userUpdate.setUsername(userdto.getEmail());
+			userUpdate.setFirstName(userdto.getFirstName());
+			userUpdate.setLastName(userdto.getLastName());
+			userUpdate.setEmail(userdto.getEmail());
+		    userUpdate.setPassword(userdto.getPassword());
+		    userRepository.save(userUpdate);
+		    return userUpdate;
+		}
+		else {
+			throw new RuntimeException("Record not found with id" + userdto.getId());
+		}
 	}
+	
 	@Override
 	@Transactional
 	public void deleteById(int id) {
@@ -98,10 +136,20 @@ Optional<User> userdb=this.userRepository.findById(id);
 		}
 		else {
 			throw new RuntimeException("Record not found with id  :" +id);
-		}
-	 
+		} 
 	}
 
-	
-	
+	@Override
+	@Transactional
+	public User getUserById(int id) {
+		Optional<User> userdb=this.userRepository.findById(id);
+		if(userdb.isPresent()) {
+			return userdb.get();
+		}
+		
+		else {
+			throw  new CustomException("Record not found with id  :" +id);
+		}
+		
+	}
 }

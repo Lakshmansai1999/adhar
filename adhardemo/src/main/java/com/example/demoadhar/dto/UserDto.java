@@ -32,11 +32,6 @@ public class UserDto {
 	
     private String password;
     
- /*  @NotBlank(message = "email should not be blank")
-   // @Pattern(regexp ="^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$",message="mail id is not valid")
-    @NotNull(message = "email should not be empty")
-   @Email(message = "email should be in correct format and should not be null")
-    private String email;*/
    
    @Pattern(regexp ="^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$",message="mail id is not valid")
    @NotEmpty(message = "email should not be empty")
