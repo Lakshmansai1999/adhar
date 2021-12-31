@@ -30,7 +30,7 @@ import com.example.demoadhar.entity.User;
 import com.example.demoadhar.repository.UserRepository;
 import com.example.demoadhar.service.UserDetailsServiceImpl;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:61350")
 @RestController
 @RequestMapping("/api")
 public class UserController {
@@ -44,7 +44,7 @@ public class UserController {
 			this.detailsServiceImpl = detailsServiceImpl;
 		} 
 		
-	@GetMapping(value="/get")
+	@GetMapping//(value="/get")
     public List<User> getAll() {
         return detailsServiceImpl.getAll();
 	}
@@ -64,7 +64,7 @@ public class UserController {
         return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }*/
 	
-	@RequestMapping(value="/user",method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(/*value="/user,*/method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
     public ResponseEntity<User> create(@Valid @RequestBody UserDto user) throws Exception{
         detailsServiceImpl.create(user);
@@ -86,7 +86,7 @@ public class UserController {
 		this.detailsServiceImpl.deleteById(id);
 		return HttpStatus.OK;
 	}*/
-	@DeleteMapping("/user/{id}")
+	@DeleteMapping("/{id}")
 	public ResponseEntity<Map<String, Boolean>> deleteById(@PathVariable int id){
 		User employee = userRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("User not exist with id :" + id));
