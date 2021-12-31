@@ -49,14 +49,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
      
     	http.csrf().disable().authorizeRequests().antMatchers("/oauth/token").permitAll()
-    	.antMatchers("/api").hasAnyAuthority("ROLE_SUPER_ADMIN")
-    	.antMatchers("/adharusers/**").hasAuthority("ROLE_ADMIN").anyRequest()
+    	.antMatchers("/api/**","/Adharcenter/**").hasAnyAuthority("SUPER_ADMIN")
+    	.antMatchers("/AdharUsers/**").hasAuthority("ADMIN").anyRequest()
     	.authenticated().and().formLogin().disable();
     	
     	/*
     	 * http.csrf().disable().authorizeRequests().antMatchers("/oauth/token").permitAll()
   	.antMatchers("/api").hasAnyAuthority("ROLE_MOBILE_SUPER_ADMIN")
-    	.antMatchers("/mobilecompany/**","/mobilemodel/**","/Distributiondetails/**").hasAuthority("ROLE_MOBILECOMPANY").anyRequest()
+    	.antMatchers("/mocy/**","/mo/**","/Di/**").hasAuthority("ROLE_MO").anyRequest()
     	//.antMatchers("/Distributiondetails/**").hasAuthority("ROLE_MOBILECOMPANY")
     	
     	.authenticated().and().formLogin().disable();

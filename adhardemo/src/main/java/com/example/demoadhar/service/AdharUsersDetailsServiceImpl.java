@@ -67,7 +67,9 @@ public AdharUsers createAdharUsers(AdharUsersDto userDto)throws Exception{
 	      user.setFirstName(dto.getFirstName());
 	      user.setLastName(dto.getLastName());
 	      user.setEmail(dto.getEmail());
-	      user.setUsername(dto.getUsername());
+	     // user.setUsername(dto.getUsername());
+	      user.setUsername(dto.getEmail());
+	      
 	      PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(); 
 	      String pass=passwordGenerator.generateRandomPassword(8);
 	      String encodedPassword = passwordEncoder.encode(pass);

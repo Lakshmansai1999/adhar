@@ -26,12 +26,17 @@ public class UserDto {
     @Size(min = 2, message = "last Name should have atleast 2 characters")
     private String lastName;
 	
-	@NotNull(message = "username should not be empty")
+	/*@NotNull(message = "username should not be empty")
     @Size(min = 2, message = "user Name should have atleast 2 characters and unique")
-    private String username;
+    private String username;*/
 	
     private String password;
     
+ /*  @NotBlank(message = "email should not be blank")
+   // @Pattern(regexp ="^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$",message="mail id is not valid")
+    @NotNull(message = "email should not be empty")
+   @Email(message = "email should be in correct format and should not be null")
+    private String email;*/
    
    @Pattern(regexp ="^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$",message="mail id is not valid")
    @NotEmpty(message = "email should not be empty")
@@ -48,8 +53,7 @@ public class UserDto {
     
 	@Override
 	public String toString() {
-		return "UserDto [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", username=" + username
-				+ ", password=" + password + ", email=" + email + ", role=" + role + "]";
+		return "UserDto [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", password=" + password + ", email=" + email + ", role=" + role + "]";
 	}
 
 }

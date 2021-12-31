@@ -46,21 +46,21 @@ public class User implements UserDetails, Serializable {
 	@Column(name = "id")
 	private Integer id;
 	
-	@Column(name="user_name")
+	@Column(name="user_name",nullable = false)
 	private String username;
 	
 	@Column(name="password")
 	private String password;
 	
-	@Column(name="first_name")
+	@Column(name="first_name",nullable = false)
 	private String firstName;
 	
-	@Column(name="last_name")
-	private String lastName;
+	@Column(name="last_name",nullable = false)
+private String lastName;
 	
+	@Column(name="email",unique = true,nullable = false)
 	@Pattern(regexp ="^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$",message="mail id is not valid")
 	@NotEmpty
-	@Column(name="email",unique = true)
 	private String email;
 	
 	

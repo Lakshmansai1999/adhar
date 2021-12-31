@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
 
 @Component//("corsFilter")
 @Order(Ordered.HIGHEST_PRECEDENCE)
-public class CarsFilter implements Filter {
+public class CorsFilter implements Filter {
 
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
